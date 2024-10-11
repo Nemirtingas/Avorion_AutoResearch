@@ -79,7 +79,7 @@ function ResearchStation.initUI() -- overridden
     button.maxTextSize = 15
     organizer:placeElementBottomLeft(button)
     button.position = button.position + vec2(-30, 20)
-    
+	
     local hsplit = UIHorizontalSplitter(Rect(vsplit.right.lower.x, vsplit.right.lower.y - 15, vsplit.right.upper.x + 15, vsplit.right.upper.y), 5, 5, 0.5)
     aur_itemTypeCombo = window:createComboBox(Rect(vec2(145, 25)), "aur_onItemTypeSelect")
     hsplit:placeElementTopRight(aur_itemTypeCombo)
@@ -170,6 +170,11 @@ function ResearchStation.initUI() -- overridden
     aur_autoBtn.position = aur_autoBtn.position + vec2(0, 20)
     
     ResearchStation.aur_initTypesUI()
+end
+
+function ResearchStation.refreshButton()
+
+
 end
 
 -- TODO CHECK: If player loads sector while being IN research station, initUI will start sooner than server data with custom names, no?
@@ -648,9 +653,23 @@ function ResearchStation.aur_start(maxRarity, itemType, selectedTypes, materialT
         separateAutoTurrets = not not separateAutoTurrets
     end
 
-    local inventory = buyer:getInventory() -- get just once
     aur_log:Debug("Player %i - Research started", callingPlayer)
-    local result = deferredCallback(0, "aur_deferred", callingPlayer, inventory, separateAutoTurrets, maxRarity, minAmount, maxAmount, itemType, selectedTypes, materialType, maxTurretDPS, mixTypes, {{},{}})
+	local callbackParameters = {
+		["callingPlayer"] = callingPlayer,
+		["inventory"] = inventory,
+		["separateAutoTurrets"] = separateAutoTurrets,
+		["maxRarity"] = maxRarity,
+		["minAmount"] = minAmount,
+		["maxAmount"] = maxAmount,
+		["itemType"] = itemType,
+		["selectedTypes"] = selectedTypes,
+		["materialType"] = materialType,
+		["maxTurretDPS"] = maxTurretDPS,
+		["mixTypes"] = mixTypes,
+		["skipRarities"] = {{},{}}
+	}
+	
+    local result = deferredCallback(0, "aur_deferred", callbackParameters)
     if not result then
         aur_log:Error("Player %i - Failed to defer research", callingPlayer)
         aur_playerLocks[callingPlayer] = nil
@@ -666,7 +685,22 @@ callable(ResearchStation, "aur_stop")
 
 -- CUSTOM
 
-function ResearchStation.aur_deferred(playerIndex, inventory, separateAutoTurrets, maxRarity, minAmount, maxAmount, itemType, selectedTypes, materialType, maxTurretDPS, mixTypes, skipRarities)
+function ResearchStation.aur_deferred(parameters)
+	local playerIndex = parameters.callingPlayer
+	local separateAutoTurrets = parameters.separateAutoTurrets
+	local maxRarity = parameters.maxRarity
+	local minAmount = parameters.minAmount
+	local maxAmount = parameters.maxAmount
+	local itemType = parameters.itemType
+	local selectedTypes = parameters.selectedTypes
+	local materialType = parameters.materialType
+	local maxTurretDPS = parameters.maxTurretDPS
+	local mixTypes = parameters.mixTypes
+	local skipRarities = parameters.skipRarities
+
+	local buyer, ship, player = getInteractingFaction(playerIndex, AlliancePrivilege.SpendResources)
+	local inventory = buyer:getInventory() -- get just once
+
     aur_log:Debug("Player %i - Another iteration: separate %s, min %i, max %i, itemtype %i, system %s, material %s, maxTurretDPS %i, mixTypes %s, skipRarities %s", playerIndex, separateAutoTurrets, minAmount, maxAmount, itemType, selectedTypes, materialType, maxTurretDPS, mixTypes, skipRarities)
 
     if not Server():isOnline(playerIndex) then -- someone got bored and left..
@@ -674,9 +708,7 @@ function ResearchStation.aur_deferred(playerIndex, inventory, separateAutoTurret
         aur_playerLocks[playerIndex] = nil -- unlock
         return
     end
-
-    local player = Player(playerIndex)
-
+	
     local itemIndices, itemsLength, isResearchFine, researchCode
     local separateCounter = 1
     if itemType == 1 and separateAutoTurrets then
@@ -768,7 +800,7 @@ function ResearchStation.aur_deferred(playerIndex, inventory, separateAutoTurret
     end
 
     if not endResearch then -- continue after a delay
-        local result = deferredCallback(aur_config.DelayInterval, "aur_deferred", playerIndex, inventory, separateAutoTurrets, maxRarity, minAmount, maxAmount, itemType, selectedTypes, materialType, maxTurretDPS, mixTypes, skipRarities)
+        local result = deferredCallback(aur_config.DelayInterval, "aur_deferred", parameters)
         if result then return end
         aur_log:Error("Player %i - Failed to defer research", playerIndex)
     end
