@@ -1,0 +1,38 @@
+# ========== C:/Users/user/AppData/Roaming/Avorion/mods/Auto Research/data/scripts/entity/merchants/researchstation.lua ==========
+#: C:/Users/user/AppData/Roaming/Avorion/mods/Auto Research/data/scripts/entity/merchants/researchstation.lua:
+msgid "up to"
+msgstr ""
+
+#: C:/Users/user/AppData/Roaming/Avorion/mods/Auto Research/data/scripts/entity/merchants/researchstation.lua:
+msgid "Min & max amount"
+msgstr ""
+
+#: C:/Users/user/AppData/Roaming/Avorion/mods/Auto Research/data/scripts/entity/merchants/researchstation.lua:
+msgid "Research selected types together"
+msgstr ""
+
+#: C:/Users/user/AppData/Roaming/Avorion/mods/Auto Research/data/scripts/entity/merchants/researchstation.lua:
+msgid "After researching items of the same type, different types will be mixed and researched"
+msgstr ""
+
+#: C:/Users/user/AppData/Roaming/Avorion/mods/Auto Research/data/scripts/entity/merchants/researchstation.lua:
+msgid "0/empty = no restrictions"
+msgstr ""
+
+#: C:/Users/user/AppData/Roaming/Avorion/mods/Auto Research/data/scripts/entity/merchants/researchstation.lua:
+msgid "Max turret DPS"
+msgstr ""
+
+#: C:/Users/user/AppData/Roaming/Avorion/mods/Auto Research/data/scripts/entity/merchants/researchstation.lua:
+msgid "Research Auto/Non-auto turrets separately"
+msgstr ""
+
+#: C:/Users/user/AppData/Roaming/Avorion/mods/Auto Research/data/scripts/entity/merchants/researchstation.lua:
+msgid "No longer used in 2.0+"
+msgstr ""
+
+#: C:/Users/user/AppData/Roaming/Avorion/mods/Auto Research/data/scripts/entity/merchants/researchstation.lua:
+msgid "Auto Research"
+msgstr ""
+
+

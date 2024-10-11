@@ -1,0 +1,38 @@
+# ========== C:/Users/user/AppData/Roaming/Avorion/mods/Auto Research/data/scripts/entity/merchants/researchstation.lua ==========
+#: C:/Users/user/AppData/Roaming/Avorion/mods/Auto Research/data/scripts/entity/merchants/researchstation.lua:
+msgid "up to"
+msgstr "до"
+
+#: C:/Users/user/AppData/Roaming/Avorion/mods/Auto Research/data/scripts/entity/merchants/researchstation.lua:
+msgid "Min & max amount"
+msgstr "Мин. и макс. кол-во"
+
+#: C:/Users/user/AppData/Roaming/Avorion/mods/Auto Research/data/scripts/entity/merchants/researchstation.lua:
+msgid "Research selected types together"
+msgstr "Исследовать выбранные типы вместе"
+
+#: C:/Users/user/AppData/Roaming/Avorion/mods/Auto Research/data/scripts/entity/merchants/researchstation.lua:
+msgid "After researching items of the same type, different types will be mixed and researched"
+msgstr "После исследования предметов одного типа, разные типы будут смешаны и исследованы вместе"
+
+#: C:/Users/user/AppData/Roaming/Avorion/mods/Auto Research/data/scripts/entity/merchants/researchstation.lua:
+msgid "0/empty = no restrictions"
+msgstr "0/пусто = без ограничений"
+
+#: C:/Users/user/AppData/Roaming/Avorion/mods/Auto Research/data/scripts/entity/merchants/researchstation.lua:
+msgid "Max turret DPS"
+msgstr "Макс. DPS турелей"
+
+#: C:/Users/user/AppData/Roaming/Avorion/mods/Auto Research/data/scripts/entity/merchants/researchstation.lua:
+msgid "Research Auto/Non-auto turrets separately"
+msgstr "Исследовать Авто/Не-авто турели отдельно"
+
+#: C:/Users/user/AppData/Roaming/Avorion/mods/Auto Research/data/scripts/entity/merchants/researchstation.lua:
+msgid "No longer used in 2.0+"
+msgstr "Больше не используется в 2.0+"
+
+#: C:/Users/user/AppData/Roaming/Avorion/mods/Auto Research/data/scripts/entity/merchants/researchstation.lua:
+msgid "Auto Research"
+msgstr "Авто-изучение"
+
+
